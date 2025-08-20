@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X } from "lucide-react";
+import React, { useState } from "react";
 
-const Navbar = ({ activeSection, scrollToSection }) => {
+interface NavbarProps {
+  activeSection: string;
+  scrollToSection: (section: string) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ activeSection, scrollToSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleNavClick = (section) => {
+  interface HandleNavClick {
+    (section: string): void;
+  }
+
+  const handleNavClick: HandleNavClick = (section) => {
     scrollToSection(section);
     setIsMenuOpen(false);
   };
 
-  const navItems = ['About', 'Experience', 'Skills', 'Education', 'Projects', 'Contact'];
+  const navItems = ["About", "Skills", "Education", "Projects", "Contact"];
 
   return (
     <nav className="fixed top-0 w-full bg-white shadow-md z-50">
@@ -19,7 +28,7 @@ const Navbar = ({ activeSection, scrollToSection }) => {
           <div className="flex items-center">
             <span className="text-xl font-bold text-gray-800">John Doe</span>
           </div>
-          
+
           {/* Desktop Navigation - Horizontal */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
@@ -27,9 +36,9 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                 key={item}
                 onClick={() => handleNavClick(item.toLowerCase())}
                 className={`text-gray-600 hover:text-blue-600 transition-colors duration-200 px-3 py-2 rounded-md text-sm font-medium ${
-                  activeSection === item.toLowerCase() 
-                    ? 'text-blue-600 bg-blue-50 font-semibold' 
-                    : 'hover:bg-gray-50'
+                  activeSection === item.toLowerCase()
+                    ? "text-blue-600 bg-blue-50 font-semibold"
+                    : "hover:bg-gray-50"
                 }`}
               >
                 {item}
@@ -59,8 +68,8 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                 onClick={() => handleNavClick(item.toLowerCase())}
                 className={`block px-3 py-2 text-left w-full rounded-md text-base font-medium transition-colors ${
                   activeSection === item.toLowerCase()
-                    ? 'text-blue-600 bg-blue-50'
-                    : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-600 hover:text-blue-600 hover:bg-gray-50"
                 }`}
               >
                 {item}

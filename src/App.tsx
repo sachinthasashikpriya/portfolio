@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Education from "./components/Education/Education";
-import Experience from "./components/Experience/Experience";
+
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Projects from "./components/Projects/Projects";
@@ -13,14 +13,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = [
-        "about",
-        "experience",
-        "skills",
-        "education",
-        "projects",
-        "contact",
-      ];
+      const sections = ["about", "skills", "education", "projects", "contact"];
       const scrollPosition = window.scrollY + 100;
 
       // Find all sections that exist in the DOM
@@ -58,7 +51,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
       <About scrollToSection={scrollToSection} />
-      <Experience />
+
       <Skills />
       <Education />
       <Projects />

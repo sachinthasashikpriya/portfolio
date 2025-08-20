@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, ExternalLink, Calendar, Tag, Star, Code, Smartphone, Globe } from 'lucide-react';
+import { Github, ExternalLink, Calendar, Star, Code,  Globe } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -23,7 +23,7 @@ interface Project {
 
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+ 
 
   const categories = [
     { id: 'all', label: 'All Projects', icon: '🚀' },
@@ -130,7 +130,7 @@ const Projects: React.FC = () => {
     ? projects 
     : projects.filter(project => project.category === activeFilter);
 
-  const featuredProjects = projects.filter(project => project.featured);
+  // Removed unused 'featuredProjects' variable
 
   const getStatusColor = (status: string): string => {
     const colors = {
