@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Code2, Database, Globe, Smartphone, Wrench, Brain, Star } from 'lucide-react';
+import { Code2, Database, Wrench, Brain, Star } from 'lucide-react';
 
 interface Skill {
   name: string;
