@@ -21,12 +21,14 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, scrollToSection }) => {
   const navItems = ["About", "Skills", "Education", "Projects", "Contact"];
 
   return (
-    <nav className="fixed top-0 w-full bg-white shadow-md z-50">
+    <nav className="glass sticky top-0 z-50 px-6 py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <span className="text-xl font-bold text-gray-800">John Doe</span>
+            <span className="text-xl font-bold text-white">
+              Sachintha Sashikpriya
+            </span>
           </div>
 
           {/* Desktop Navigation - Horizontal */}
@@ -35,11 +37,12 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, scrollToSection }) => {
               <button
                 key={item}
                 onClick={() => handleNavClick(item.toLowerCase())}
-                className={`text-gray-600 hover:text-blue-600 transition-colors duration-200 px-3 py-2 rounded-md text-sm font-medium ${
-                  activeSection === item.toLowerCase()
-                    ? "text-blue-600 bg-blue-50 font-semibold"
-                    : "hover:bg-gray-50"
-                }`}
+                className={`text-white transition-all duration-300 px-3 py-2 rounded-md text-sm font-medium
+        ${
+          activeSection === item.toLowerCase()
+            ? "bg-white/20 backdrop-blur-md border border-white/20 text-blue-300 font-semibold shadow-lg"
+            : "hover:bg-white/20 hover:backdrop-blur-md hover:border hover:border-white/20"
+        }`}
               >
                 {item}
               </button>
@@ -50,7 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, scrollToSection }) => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-600 hover:text-gray-900 p-2 rounded-md"
+              className="text-white hover:text-gray-900 p-2 rounded-md"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import About from "./components/About/About";
+import GlassBackground from "./components/Background Gradient/BackgroundGradient";
 import Contact from "./components/Contact/Contact";
 import Education from "./components/Education/Education";
-
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Projects from "./components/Projects/Projects";
@@ -48,15 +48,23 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
-      <About scrollToSection={scrollToSection} />
+    <div className="min-h-screen relative">
+      {/* Background gradient blobs */}
+      <GlassBackground />
 
-      <Skills />
-      <Education />
-      <Projects />
-      <Contact />
-      <Footer />
+      {/* Content with glass UI */}
+      <div className="relative z-10">
+        <Navbar
+          activeSection={activeSection}
+          scrollToSection={scrollToSection}
+        />
+        <About scrollToSection={scrollToSection} />
+        <Skills />
+        <Education />
+        <Projects />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   );
 };

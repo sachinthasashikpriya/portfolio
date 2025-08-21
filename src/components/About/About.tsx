@@ -1,5 +1,14 @@
-import React from 'react';
-import { Download, Mail, Github, Linkedin, MapPin, Sparkles, Code, Coffee } from 'lucide-react';
+import {
+  Code,
+  Coffee,
+  Download,
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
+  Sparkles,
+} from "lucide-react";
+import React from "react";
 
 interface AboutProps {
   scrollToSection: (sectionId: string) => void;
@@ -7,20 +16,28 @@ interface AboutProps {
 
 const About: React.FC<AboutProps> = ({ scrollToSection }) => {
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub', color: 'hover:text-gray-900' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'hover:text-blue-600' },
-    { icon: Mail, href: '#', label: 'Email', color: 'hover:text-red-500' },
+    { icon: Github, href: "#", label: "GitHub", color: "hover:text-gray-900" },
+    {
+      icon: Linkedin,
+      href: "#",
+      label: "LinkedIn",
+      color: "hover:text-blue-600",
+    },
+    { icon: Mail, href: "#", label: "Email", color: "hover:text-red-500" },
   ];
 
   const stats = [
-    { number: '3+', label: 'Years Learning', icon: '📚' },
-    { number: '10+', label: 'Projects', icon: '💻' },
-    { number: '5+', label: 'Technologies', icon: '🚀' },
-    { number: '100%', label: 'Dedication', icon: '⚡' },
+    { number: "3+", label: "Years Learning", icon: "📚" },
+    { number: "10+", label: "Projects", icon: "💻" },
+    { number: "5+", label: "Technologies", icon: "🚀" },
+    { number: "100%", label: "Dedication", icon: "⚡" },
   ];
 
   return (
-    <section id="about" className="pt-20 pb-16 min-h-screen flex items-center relative overflow-hidden">
+    <section
+      id="about"
+      className="pt-20 pb-16 min-h-screen flex items-center relative overflow-hidden"
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
@@ -38,13 +55,17 @@ const About: React.FC<AboutProps> = ({ scrollToSection }) => {
                 <span className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></span>
                 <span>Hello, I'm</span>
               </div>
-              
+
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
-                <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
-                  John Doe
+                <span className="text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]">
+                  Sachintha Sashikpriya
                 </span>
+
                 <div className="flex items-center mt-2">
-                  <Sparkles className="text-yellow-500 mr-2 animate-spin" size={24} />
+                  <Sparkles
+                    className="text-yellow-500 mr-2 animate-spin"
+                    size={24}
+                  />
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent text-2xl sm:text-3xl lg:text-4xl">
                     IT Student & Developer
                   </span>
@@ -55,16 +76,32 @@ const About: React.FC<AboutProps> = ({ scrollToSection }) => {
             {/* Description */}
             <div className="space-y-4">
               <p className="text-lg text-gray-600 leading-relaxed">
-                I'm a passionate <span className="text-blue-600 font-semibold">3rd-year Information Technology</span> student 
-                with a love for creating innovative digital solutions. Currently exploring the exciting world of 
-                <span className="text-purple-600 font-semibold"> full-stack development</span> and 
-                <span className="text-indigo-600 font-semibold"> modern web technologies</span>.
+                I'm a passionate{" "}
+                <span className="text-blue-600 font-semibold">
+                  3rd-year Undergraduate
+                </span>{" "}
+                at the{" "}
+                <span className="text-blue-600 font-semibold">
+                  University of Moratuwa
+                </span>{" "}
+                with a love for creating innovative digital solutions. Currently
+                exploring the exciting world of
+                <span className="text-purple-600 font-semibold">
+                  {" "}
+                  full-stack development
+                </span>{" "}
+                and
+                <span className="text-indigo-600 font-semibold">
+                  {" "}
+                  modern web technologies
+                </span>
+                .
               </p>
-              
+
               <div className="flex items-center space-x-4 text-gray-600">
                 <div className="flex items-center space-x-2">
                   <MapPin size={16} className="text-blue-500" />
-                  <span>City, Country</span>
+                  <span>Moratuwa, Sri Lanka</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Coffee size={16} className="text-orange-500" />
@@ -79,9 +116,9 @@ const About: React.FC<AboutProps> = ({ scrollToSection }) => {
                 <Download size={20} className="group-hover:animate-bounce" />
                 <span className="font-semibold">Download Resume</span>
               </button>
-              
+
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection("contact")}
                 className="group border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-2xl hover:border-blue-500 hover:text-blue-600 transition-all duration-300 hover:bg-blue-50/50 flex items-center justify-center space-x-2"
               >
                 <Mail size={20} className="group-hover:animate-pulse" />
@@ -112,20 +149,22 @@ const About: React.FC<AboutProps> = ({ scrollToSection }) => {
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 rounded-full animate-pulse shadow-2xl"></div>
                 <div className="absolute inset-2 bg-white rounded-full flex items-center justify-center">
-                  <div className="text-6xl lg:text-8xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    JD
-                  </div>
+                  <img
+                    src="/Profile pic sitting.jpg" // 👉 replace with your image path
+                    alt="Profile"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </div>
-                
+
                 {/* Floating Elements */}
                 <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg animate-bounce">
                   <Code className="text-white" size={24} />
                 </div>
-                
+
                 <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg animate-pulse">
                   <span className="text-white text-xl">💡</span>
                 </div>
-                
+
                 <div className="absolute top-1/2 -right-8 w-14 h-14 bg-gradient-to-br from-pink-400 to-red-500 rounded-2xl flex items-center justify-center shadow-lg animate-bounce delay-1000">
                   <span className="text-white text-lg">🚀</span>
                 </div>
