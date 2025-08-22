@@ -1,85 +1,51 @@
-import { Menu, X } from "lucide-react";
-import React, { useState } from "react";
+// components/Navigation.tsx
+import React from 'react';
+import { User, GraduationCap, FolderOpen, Award, MessageCircle } from 'lucide-react';
 
-interface NavbarProps {
+interface NavigationProps {
   activeSection: string;
-  scrollToSection: (section: string) => void;
+  setActiveSection: (section: string) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ activeSection, scrollToSection }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection }) => {
+  const navItems = [
+    { id: 'about', label: 'About', icon: <User className="w-4 h-4" /> },
+    { id: 'education', label: 'Education', icon: <GraduationCap className="w-4 h-4" /> },
+    { id: 'projects', label: 'Projects', icon: <FolderOpen className="w-4 h-4" /> },
+    { id: 'skills', label: 'Skills', icon: <Award className="w-4 h-4" /> },
+    { id: 'contact', label: 'Contact', icon: <MessageCircle className="w-4 h-4" /> }
+  ];
 
-  interface HandleNavClick {
-    (section: string): void;
-  }
-
-  const handleNavClick: HandleNavClick = (section) => {
-    scrollToSection(section);
-    setIsMenuOpen(false);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
+    }
   };
 
-  const navItems = ["About", "Skills", "Education", "Projects", "Contact"];
-
   return (
-    <nav className="fixed top-0 w-full bg-white shadow-md z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <span className="text-xl font-bold text-gray-800">John Doe</span>
-          </div>
-
-          {/* Desktop Navigation - Horizontal */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => handleNavClick(item.toLowerCase())}
-                className={`text-gray-600 hover:text-blue-600 transition-colors duration-200 px-3 py-2 rounded-md text-sm font-medium ${
-                  activeSection === item.toLowerCase()
-                    ? "text-blue-600 bg-blue-50 font-semibold"
-                    : "hover:bg-gray-50"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/40 border-b border-gray-800/50">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex justify-center space-x-1">
+          {navItems.map((item) => (
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-600 hover:text-gray-900 p-2 rounded-md"
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                activeSection === item.id
+                  ? 'bg-gray-800/60 text-white shadow-lg border border-gray-700'
+                  : 'text-slate-400 hover:text-white hover:bg-gray-800/40'
+              }`}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {item.icon}
+              <span className="hidden sm:inline">{item.label}</span>
             </button>
-          </div>
+          ))}
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white border-t shadow-lg">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => handleNavClick(item.toLowerCase())}
-                className={`block px-3 py-2 text-left w-full rounded-md text-base font-medium transition-colors ${
-                  activeSection === item.toLowerCase()
-                    ? "text-blue-600 bg-blue-50"
-                    : "text-gray-600 hover:text-blue-600 hover:bg-gray-50"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
     </nav>
   );
 };
 
-export default Navbar;
+export default Navigation;
