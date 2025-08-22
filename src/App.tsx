@@ -4,13 +4,14 @@ import "./App.css";
 import AboutSection from "./components/About/About";
 import ContactSection from "./components/Contact/Contact";
 import EducationSection from "./components/Education/Education";
+import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
 import ProjectsSection from "./components/Projects/Projects";
 import SkillsSection from "./components/Skills/Skills";
 import WaterDrop from "./components/WaterDrop/WaterDrop";
 
 const Portfolio = () => {
-  const [activeSection, setActiveSection] = useState("about");
+  const [activeSection, setActiveSection] = useState("home");
 
   // Intersection Observer for active section detection
   useEffect(() => {
@@ -33,7 +34,14 @@ const Portfolio = () => {
       observerOptions
     );
 
-    const sections = ["about", "education", "projects", "skills", "contact"];
+    const sections = [
+      "home",
+      "about",
+      "education",
+      "projects",
+      "skills",
+      "contact",
+    ];
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -61,6 +69,7 @@ const Portfolio = () => {
       />
 
       {/* All Sections */}
+      <Hero />
       <AboutSection />
       <EducationSection />
       <ProjectsSection />

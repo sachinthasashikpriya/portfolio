@@ -1,6 +1,6 @@
 // components/Navigation.tsx
 import React from 'react';
-import { User, GraduationCap, FolderOpen, Award, MessageCircle } from 'lucide-react';
+import { Home, User, GraduationCap, FolderOpen, Award, MessageCircle } from 'lucide-react';
 
 interface NavigationProps {
   activeSection: string;
@@ -9,6 +9,7 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ activeSection, setActiveSection }) => {
   const navItems = [
+    { id: 'home', label: 'Home', icon: <Home className="w-4 h-4" /> },  
     { id: 'about', label: 'About', icon: <User className="w-4 h-4" /> },
     { id: 'education', label: 'Education', icon: <GraduationCap className="w-4 h-4" /> },
     { id: 'projects', label: 'Projects', icon: <FolderOpen className="w-4 h-4" /> },

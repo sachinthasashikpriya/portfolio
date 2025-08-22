@@ -5,7 +5,7 @@ import { Code, Database, Globe, Smartphone, Server, Palette, Github } from 'luci
 interface Skill {
   name: string;
   icon: React.ReactNode;
-  level: number;
+  
 }
 
 interface SkillCategories {
@@ -15,28 +15,28 @@ interface SkillCategories {
 const SkillsSection: React.FC = () => {
   const skillCategories: SkillCategories = {
     'Frontend': [
-      { name: 'React', icon: <Code className="w-6 h-6" />, level: 90 },
-      { name: 'JavaScript', icon: <Globe className="w-6 h-6" />, level: 85 },
-      { name: 'TypeScript', icon: <Code className="w-6 h-6" />, level: 80 },
-      { name: 'Tailwind CSS', icon: <Palette className="w-6 h-6" />, level: 88 },
-      { name: 'Next.js', icon: <Code className="w-6 h-6" />, level: 82 },
-      { name: 'Vue.js', icon: <Code className="w-6 h-6" />, level: 75 }
+      { name: 'React', icon: <Code className="w-6 h-6" /> },
+      { name: 'JavaScript', icon: <Globe className="w-6 h-6" /> },
+      { name: 'TypeScript', icon: <Code className="w-6 h-6" />},
+      { name: 'Tailwind CSS', icon: <Palette className="w-6 h-6" /> },
+      { name: 'Next.js', icon: <Code className="w-6 h-6" /> },
+      { name: 'Vue.js', icon: <Code className="w-6 h-6" /> }
     ],
     'Backend': [
-      { name: 'Node.js', icon: <Server className="w-6 h-6" />, level: 85 },
-      { name: 'Express.js', icon: <Server className="w-6 h-6" />, level: 88 },
-      { name: 'Python', icon: <Code className="w-6 h-6" />, level: 78 },
-      { name: 'MongoDB', icon: <Database className="w-6 h-6" />, level: 80 },
-      { name: 'PostgreSQL', icon: <Database className="w-6 h-6" />, level: 75 },
-      { name: 'GraphQL', icon: <Database className="w-6 h-6" />, level: 70 }
+      { name: 'Node.js', icon: <Server className="w-6 h-6" /> },
+      { name: 'Express.js', icon: <Server className="w-6 h-6" /> },
+      { name: 'Python', icon: <Code className="w-6 h-6" />},
+      { name: 'MongoDB', icon: <Database className="w-6 h-6" /> },
+      { name: 'PostgreSQL', icon: <Database className="w-6 h-6" /> },
+      { name: 'GraphQL', icon: <Database className="w-6 h-6" /> }
     ],
     'Tools & Others': [
-      { name: 'Vite', icon: <Code className="w-6 h-6" />, level: 85 },
-      { name: 'Git & GitHub', icon: <Github className="w-6 h-6" />, level: 90 },
-      { name: 'Docker', icon: <Server className="w-6 h-6" />, level: 72 },
-      { name: 'AWS', icon: <Server className="w-6 h-6" />, level: 68 },
-      { name: 'Responsive Design', icon: <Smartphone className="w-6 h-6" />, level: 92 },
-      { name: 'Testing (Jest)', icon: <Code className="w-6 h-6" />, level: 75 }
+      { name: 'Vite', icon: <Code className="w-6 h-6" /> },
+      { name: 'Git & GitHub', icon: <Github className="w-6 h-6" /> },
+      { name: 'Docker', icon: <Server className="w-6 h-6" />},
+      { name: 'AWS', icon: <Server className="w-6 h-6" />},
+      { name: 'Responsive Design', icon: <Smartphone className="w-6 h-6" /> },
+      { name: 'Testing (Jest)', icon: <Code className="w-6 h-6" /> }
     ]
   };
 
@@ -54,14 +54,9 @@ const SkillsSection: React.FC = () => {
                     <div className="flex items-center gap-3 text-white">
                       <div className="text-slate-400">{skill.icon}</div>
                       <span className="font-medium flex-1">{skill.name}</span>
-                      <span className="text-slate-400 text-sm font-semibold">{skill.level}%</span>
+                     
                     </div>
-                    <div className="h-3 bg-gray-800/60 rounded-full overflow-hidden border border-gray-700">
-                      <div 
-                        className="h-full bg-gradient-to-r from-gray-600 to-gray-400 rounded-full transition-all duration-1500 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
+                  
                   </div>
                 ))}
               </div>

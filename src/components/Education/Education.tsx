@@ -13,26 +13,20 @@ interface Education {
 const EducationSection: React.FC = () => {
   const education: Education[] = [
     {
-      degree: 'Bachelor of Computer Science',
-      institution: 'University of Technology',
-      year: '2020 - 2024',
+      degree: 'Bachelor of Information Technology and Management',
+      institution: 'University of Moratuwa',
+      year: '2023 - current',
       description: 'Specialized in Software Engineering and Web Technologies. Graduated Magna Cum Laude with a focus on modern web development frameworks.',
       gpa: '3.8/4.0'
     },
     {
-      degree: 'Full Stack Web Development Bootcamp',
-      institution: 'Tech Academy',
-      year: '2023',
+      degree: 'Secondary Education',
+      institution: 'Ibbaganuwa Central College',
+      year: '2013-2021',
       description: 'Intensive 6-month program covering modern web development stack including React, Node.js, MongoDB, and deployment strategies.',
       certificate: 'Certified Full Stack Developer'
-    },
-    {
-      degree: 'Advanced JavaScript Certification',
-      institution: 'CodeCademy Pro',
-      year: '2022',
-      description: 'Advanced concepts in JavaScript including ES6+, async programming, and modern development practices.',
-      certificate: 'JavaScript Expert'
     }
+   
   ];
 
   return (
