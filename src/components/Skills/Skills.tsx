@@ -1,13 +1,5 @@
 // components/SkillsSection.tsx
-import {
-  Code,
-  Database,
-  Github,
-  Globe,
-  Palette,
-  Server,
-  Smartphone,
-} from "lucide-react";
+import { Code, Github, Server, Smartphone } from "lucide-react";
 import React from "react";
 
 interface Skill {
@@ -22,32 +14,74 @@ interface SkillCategories {
 const SkillsSection: React.FC = () => {
   const skillCategories: SkillCategories = {
     Frontend: [
-      { name: "React", icon: <img src="Frontend/typescript.svg" className="w-full h-full" /> },
-      { name: "JavaScript", icon: <img src="Frontend/javascript.svg" className="w-full h-full" /> },
+      {
+        name: "React",
+        icon: <img src="Frontend/typescript.svg" className="w-full h-full" />,
+      },
+      {
+        name: "JavaScript",
+        icon: <img src="Frontend/javascript.svg" className="w-full h-full" />,
+      },
       {
         name: "TypeScript",
         icon: <img src="Frontend/typescript.svg" className="w-full h-full" />,
       },
-      { name: "Tailwind CSS", icon: <img src="Frontend/tailwindcss.svg" className="w-full h-full" /> },
-      { name: "Bootstrap", icon: <img src="Frontend/bootstrap.svg" className="w-full h-full" /> },
-      { name: "HTML5", icon: <img src="Frontend/html-5.svg" className="w-full h-full" /> },
-      { name: "CSS3", icon: <img src="Frontend/css3.svg" className="w-full h-full" /> }
+      {
+        name: "Tailwind CSS",
+        icon: <img src="Frontend/tailwindcss.svg" className="w-full h-full" />,
+      },
+      {
+        name: "Bootstrap",
+        icon: <img src="Frontend/bootstrap.svg" className="w-full h-full" />,
+      },
+      {
+        name: "HTML5",
+        icon: <img src="Frontend/html-5.svg" className="w-full h-full" />,
+      },
+      {
+        name: "CSS3",
+        icon: <img src="Frontend/css3.svg" className="w-full h-full" />,
+      },
     ],
     "Backend & Databases": [
-      { name: "Node.js", icon: <img src="Backend/node-js.svg" className="w-full h-full" /> },
-      { name: "Express.js", icon: <img src="Backend/express-js.svg" className="w-full h-full" /> },
-      { name: ".NET", icon: <img src="Backend/.net-.svg" className="w-full h-full" /> },
-      { name: "PHP", icon:<img src="Backend/php-logo.svg" className="w-full h-full" /> },
-      { name: "MySQL", icon: <img src="Backend/mysql.svg" className="w-full h-full" /> },
-      { name: "MongoDB", icon: <img src="Backend/mysql.svg" className="w-full h-full" /> },
-      { name: "MSSQL", icon: <img src="Backend/mssql.svg" className="w-full h-full" /> }
+      {
+        name: "Node.js",
+        icon: <img src="Backend/node-js.svg" className="w-full h-full" />,
+      },
+      {
+        name: "Express.js",
+        icon: <img src="Backend/express-js.svg" className="w-full h-full" />,
+      },
+      {
+        name: ".NET",
+        icon: <img src="Backend/.net-.svg" className="w-full h-full" />,
+      },
+      {
+        name: "PHP",
+        icon: <img src="Backend/php-logo.svg" className="w-full h-full" />,
+      },
+      {
+        name: "MySQL",
+        icon: <img src="Backend/mysql.svg" className="w-full h-full" />,
+      },
+      {
+        name: "MongoDB",
+        icon: <img src="Backend/mysql.svg" className="w-full h-full" />,
+      },
+      {
+        name: "MSSQL",
+        icon: <img src="Backend/mssql.svg" className="w-full h-full" />,
+      },
     ],
     "Tools & Others": [
       { name: "Vite", icon: <Code className="w-full h-full" /> },
       { name: "Git & GitHub", icon: <Github className="w-full h-full" /> },
       { name: "Docker", icon: <Server className="w-full h-full" /> },
       { name: "AWS", icon: <Server className="w-full h-full" /> },
-      { name: "Responsive Design", icon: <Smartphone className="w-full h-full" /> },
+      {
+        name: "Responsive Design",
+        icon: <Smartphone className="w-full h-full" />,
+      },
       { name: "Testing (Jest)", icon: <Code className="w-full h-full" /> },
     ],
   };
