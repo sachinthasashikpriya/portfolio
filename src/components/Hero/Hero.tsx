@@ -66,8 +66,7 @@ const Hero: React.FC = () => {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <a
-              href="/resume.pdf"
-              download
+              href="https://drive.google.com/file/d/1Z08gk7C7NsP0ZhMX0Xy7ronntUd53QSq/view?usp=sharing"
               className="px-6 py-3 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-800 transition-all duration-300 flex items-center justify-center gap-2"
             >
               <Download size={18} />

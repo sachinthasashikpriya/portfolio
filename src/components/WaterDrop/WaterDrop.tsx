@@ -14,7 +14,7 @@ const WaterDrop: React.FC<WaterDropProps> = ({ delay, x, y }) => (
       left: `${x}%`,
       top: `${y}%`,
       animation: `float ${
-        3 + Math.random() * 2
+        3 + Math.random() * 0.5
       }s ease-in-out ${delay}s infinite alternate`,
     }}
   />
