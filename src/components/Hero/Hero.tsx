@@ -1,87 +1,102 @@
-// @flow strict
+import { Download, Send } from "lucide-react"; // Import icons
+import React, { useEffect, useRef } from "react";
+import { Typed } from "react-typed";
 
-import { personalData } from "../../data/personalData";
+const Hero: React.FC = () => {
+  const nameRef = useRef<HTMLSpanElement>(null);
+  const titleRef = useRef<HTMLSpanElement>(null);
 
-import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { FaFacebook, FaTwitterSquare } from "react-icons/fa";
-import { MdDownload } from "react-icons/md";
-import { RiContactsFill } from "react-icons/ri";
-import { SiLeetcode } from "react-icons/si";
-import { Link } from "react-router-dom";
+  useEffect(() => {
+    let nameTyped: Typed | null = null;
+    let titleTyped: Typed | null = null;
 
-function HeroSection() {
+    if (nameRef.current) {
+      nameTyped = new Typed(nameRef.current, {
+        strings: ["Sachintha"],
+        typeSpeed: 80,
+        backSpeed: 50,
+        loop: false,
+      });
+    }
+
+    if (titleRef.current) {
+      titleTyped = new Typed(titleRef.current, {
+        strings: [
+          "Turning ideas into scalable applications",
+          "Crafting seamless frontend & robust backend",
+          "Building modern web experiences",
+          "Passionate about clean code & design",
+        ],
+        typeSpeed: 60,
+        backSpeed: 40,
+        loop: true,
+      });
+    }
+
+    return () => {
+      if (nameTyped) nameTyped.destroy();
+      if (titleTyped) titleTyped.destroy();
+    };
+  }, []);
+
   return (
-    <section className="relative flex flex-col items-center justify-between py-4 lg:py-12">
-      <div className="grid grid-cols-1 items-start lg:grid-cols-2 lg:gap-12 gap-y-8">
-        <div className="order-2 lg:order-1 flex flex-col items-start justify-center p-2 pb-20 md:pb-10 lg:pt-10">
-          <h1 className="text-9xl font-bold leading-10 text-white md:font-extrabold lg:text-[2.6rem] lg:leading-[3.5rem]">
-            Hey, <br />
-            I'm Sachintha
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center px-6"
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full max-w-6xl">
+        {/* Left column - Text */}
+        <div className="text-center md:text-left">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+            Hi, I'm{" "}
+            <span className="bg-gradient-to-r from-slate-400 to-slate-200 bg-clip-text text-transparent">
+              <span ref={nameRef}></span>
+            </span>
           </h1>
-
-          <div className="my-12 flex items-center gap-5">
-            <Link
-              to={personalData.github}
-              target="_blank"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <BsGithub size={30} />
-            </Link>
-            <Link
-              to={personalData.linkedIn}
-              target="_blank"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <BsLinkedin size={30} />
-            </Link>
-            <Link
-              to={personalData.facebook}
-              target="_blank"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <FaFacebook size={30} />
-            </Link>
-            <Link
-              to={personalData.leetcode}
-              target="_blank"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <SiLeetcode size={30} />
-            </Link>
-            <Link
-              to={personalData.twitter}
-              target="_blank"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <FaTwitterSquare size={30} />
-            </Link>
+          <div className="mb-2">
+            <span className="text-slate-400 uppercase tracking-wider text-3xl font-medium">
+              Full Stack Web Developer
+            </span>
           </div>
 
-          <div className="flex items-center gap-3">
-            <Link
-              to="#contact"
-              className="bg-gradient-to-r to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600"
-            >
-              <button className="px-3 text-xs md:px-8 py-3 md:py-4 bg-[#0d1224] rounded-full border-none text-center md:text-sm font-medium uppercase tracking-wider text-[#ffff] no-underline transition-all duration-200 ease-out  md:font-semibold flex items-center gap-1 hover:gap-3">
-                <span>Contact me</span>
-                <RiContactsFill size={16} />
-              </button>
-            </Link>
+          <p className="text-xl md:text-2xl text-slate-400 mb-8">
+            <span ref={titleRef}></span>
+          </p>
 
-            <Link
-              className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-3 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:text-white hover:no-underline md:font-semibold"
-              role="button"
-              target="_blank"
-              to={personalData.resume}
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a
+              href="/resume.pdf"
+              download
+              className="px-6 py-3 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-800 transition-all duration-300 flex items-center justify-center gap-2"
             >
-              <span>Get Resume</span>
-              <MdDownload size={16} />
-            </Link>
+              <Download size={18} />
+              Download CV
+            </a>
+
+            <a
+              href="#contact"
+              className="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 text-white hover:from-blue-700 hover:to-blue-900 transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              <Send size={18} />
+              Contact Me
+            </a>
+          </div>
+        </div>
+
+        {/* Right column - Circle with image */}
+        <div className="flex justify-center md:justify-end">
+          <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center shadow-2xl border border-gray-700 overflow-hidden">
+            <img
+              src="/Profile-pic-sitting.jpg"
+              alt="Profile"
+              className="w-full h-full object-cover rounded-full"
+            />
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
-export default HeroSection;
+export default Hero;

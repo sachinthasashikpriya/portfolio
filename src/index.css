@@ -3,39 +3,59 @@
 @tailwind utilities;
 
 :root {
-    --foreground-rgb: rgb(211, 216, 232);
+  --foreground-rgb: 255, 255, 255;
+  --background-start: #0d1224;
+  --background-end: #1a1c2e;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom right, var(--background-start), var(--background-end));
+  /* margin-right: 50px; */
+  /* margin-left: 50px; */
+  background-attachment: fixed;
+  /* Dark mode dot pattern with lower opacity */
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Dark mode glass effect */
+@layer components {
+  .dark-glass {
+    @apply bg-slate-900/60 backdrop-blur-md border border-slate-800 shadow-lg;
   }
   
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --foreground-rgb: 255, 255, 255;
-    }
+  .dark-card {
+    @apply bg-gray-900/80 rounded-xl border border-gray-800 shadow-md hover:shadow-blue-900/20;
   }
   
-  body {
-    color: rgb(var(--foreground-rgb));
-    background-color: #0d1224;
-    margin-right: 50px;
-    margin-left: 50px;
+  .dark-input {
+    @apply bg-gray-800/50 border border-gray-700 focus:border-blue-500 text-white;
   }
   
-  #sticky-card-1 {
-    --index: 1;
+  .dark-button {
+    @apply bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700;
   }
-  
-  #sticky-card-2 {
-    --index: 2;
-  }
-  
-  #sticky-card-3 {
-    --index: 3;
-  }
-  
-  #sticky-card-4 {
-    --index: 4;
-  }
-  
-  .sticky-card {
-    padding-top: calc(var(--index) * 2.5rem);
-    top: calc(var(--index) * 4rem);
-  }
+}
+
+/* Existing sticky card styles */
+#sticky-card-1 {
+  --index: 1;
+}
+
+#sticky-card-2 {
+  --index: 2;
+}
+
+#sticky-card-3 {
+  --index: 3;
+}
+
+#sticky-card-4 {
+  --index: 4;
+}
+
+.sticky-card {
+  padding-top: calc(var(--index) * 2.5rem);
+  top: calc(var(--index) * 4rem);
+}
