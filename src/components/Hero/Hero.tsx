@@ -47,8 +47,8 @@ const Hero: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full max-w-6xl">
         {/* Left column - Text */}
         <div className="text-center md:text-left">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-            Hi, I'm{" "}
+          <h1 className="text-5xl md:text-7xl font-bold text-white">Hi, I'm</h1>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="bg-gradient-to-r from-slate-400 to-slate-200 bg-clip-text text-transparent">
               <span ref={nameRef}></span>
             </span>
@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
         <div className="flex justify-center md:justify-end">
           <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center shadow-2xl border border-gray-700 overflow-hidden">
             <img
-              src="/Profile-pic-sitting.jpg"
+              src="Profile-pic-sitting.jpg"
               alt="Profile"
               className="w-full h-full object-cover rounded-full"
             />
