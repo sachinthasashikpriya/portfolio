@@ -1,8 +1,71 @@
 // components/ContactSection.tsx
-import { Github, Linkedin, Mail } from "lucide-react";
-import React from "react";
+import emailjs from "@emailjs/browser";
+import { Github, Linkedin, Mail, Send } from "lucide-react";
+import React, { useRef, useState } from "react";
+
+// Replace these with your actual EmailJS credentials
+const SERVICE_ID = "service_eherg1h";
+const TEMPLATE_ID = "template_mxh0f5p";
+const PUBLIC_KEY = "TYLRY0AdW5wqPPHEL";
 
 const ContactSection: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [formData, setFormData] = useState({
+    user_name: "", // Changed from "name" to match input field
+    user_email: "", // Changed from "email" to match input field
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    if (!formRef.current) return;
+
+    try {
+      // Send email using EmailJS
+      const result = await emailjs.sendForm(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        formRef.current,
+        PUBLIC_KEY
+      );
+
+      if (result.text === "OK") {
+        // Clear the form
+        setFormData({ user_name: "", user_email: "", message: "" }); // Updated to match state keys
+        setSubmitStatus({
+          type: "success",
+          message: "Message sent successfully! I'll get back to you soon.",
+        });
+      } else {
+        throw new Error("Failed to send email");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Failed to send message. Please try again or email me directly.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -42,55 +105,137 @@ const ContactSection: React.FC = () => {
             <h3 className="text-2xl font-semibold text-white mb-6">
               Connect With Me
             </h3>
-            <div className="space-y-6">
-              <a
-                href="mailto:sachinthasashikpriya8968@gmail.com"
-                className="flex items-center gap-4 text-blue-200 hover:text-white transition-all duration-300 group p-4 rounded-xl hover:bg-white/10"
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label
+                  htmlFor="user_name"
+                  className="block text-gray-200 mb-2 text-sm"
+                >
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="user_name"
+                  name="user_name"
+                  value={formData.user_name} // Updated to match state key
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 rounded-lg bg-black/30 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="user_email"
+                  className="block text-gray-200 mb-2 text-sm"
+                >
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="user_email"
+                  name="user_email"
+                  value={formData.user_email} // Updated to match state key
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 rounded-lg bg-black/30 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-gray-200 mb-2 text-sm"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full px-4 py-2 rounded-lg bg-black/30 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full py-3 rounded-lg text-white font-medium flex items-center justify-center gap-2 transition-all duration-300 ${
+                  isSubmitting
+                    ? "bg-gray-600 cursor-not-allowed"
+                    : "bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900"
+                }`}
               >
-                <Mail className="w-8 h-8 group-hover:scale-110 transition-transform" />
-                <div>
-                  <div className="font-medium">Email</div>
-                  <div className="text-sm text-gray-300">
-                    sachinthasashikpriya8698@gmail.com
-                  </div>
+                {isSubmitting ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    <Send size={18} />
+                    Send Message
+                  </>
+                )}
+              </button>
+              {submitStatus.type && (
+                <div
+                  className={`mt-4 p-3 rounded-lg text-sm ${
+                    submitStatus.type === "success"
+                      ? "bg-green-500/20 text-green-300"
+                      : "bg-red-500/20 text-red-300"
+                  }`}
+                >
+                  {submitStatus.message}
                 </div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-4 text-blue-200 hover:text-white transition-all duration-300 group p-4 rounded-xl hover:bg-white/10"
-              >
-                <Github className="w-8 h-8 group-hover:scale-110 transition-transform" />
-                <div>
-                  <div className="font-medium">GitHub</div>
-                  <a
-                    href="https://github.com/sachinthasashikpriya"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-blue-400 hover:underline"
-                  >
-                    github.com/sachinthasashikpriya
-                  </a>
-                </div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-4 text-blue-200 hover:text-white transition-all duration-300 group p-4 rounded-xl hover:bg-white/10"
-              >
-                <Linkedin className="w-8 h-8 group-hover:scale-110 transition-transform" />
-                <div>
-                  <div className="font-medium">LinkedIn</div>
-                  <a
-                    href="https://www.linkedin.com/in/sachintha-sashikpriya-8827a6267/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-blue-400 hover:underline"
-                  >
-                    github.com/sachinthasashikpriya
-                  </a>
-                </div>
-              </a>
-            </div>
+              )}
+            </form>
           </div>
+        </div>
+
+        {/* Social Links Section */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <a
+            href="mailto:sachinthauom@gmail.com"
+            className="backdrop-blur-md bg-white/5 hover:bg-white/10 rounded-2xl p-6 border border-white/10 shadow-xl transition-all duration-300 flex items-center gap-4"
+          >
+            <div className="bg-blue-500/20 p-3 rounded-full">
+              <Mail className="w-6 h-6 text-blue-300" />
+            </div>
+            <div>
+              <h4 className="text-white font-medium">Email</h4>
+              <p className="text-sm text-gray-300">
+                sachinthauom@gmail.com
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="https://github.com/sachinthasashikpriya"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="backdrop-blur-md bg-white/5 hover:bg-white/10 rounded-2xl p-6 border border-white/10 shadow-xl transition-all duration-300 flex items-center gap-4"
+          >
+            <div className="bg-purple-500/20 p-3 rounded-full">
+              <Github className="w-6 h-6 text-purple-300" />
+            </div>
+            <div>
+              <h4 className="text-white font-medium">GitHub</h4>
+              
+            </div>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/sachintha-sashikpriya-8827a6267/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="backdrop-blur-md bg-white/5 hover:bg-white/10 rounded-2xl p-6 border border-white/10 shadow-xl transition-all duration-300 flex items-center gap-4"
+          >
+            <div className="bg-blue-600/20 p-3 rounded-full">
+              <Linkedin className="w-6 h-6 text-blue-400" />
+            </div>
+            <div>
+              <h4 className="text-white font-medium">LinkedIn</h4>
+              
+            </div>
+          </a>
         </div>
 
         <div className="mt-16 text-center">

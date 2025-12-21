@@ -14,7 +14,7 @@ const AboutSection: React.FC = () => (
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <p className="text-slate-300 text-lg leading-relaxed mb-6">
-              I’m a third-year undergraduate student at the University of
+              I’m a third-year undergraduate at the University of
               Moratuwa with a strong passion for full-stack web development.
               With over three years of hands-on experience, I enjoy building
               modern, responsive, and user-friendly web applications.
@@ -30,11 +30,11 @@ const AboutSection: React.FC = () => (
           <div className="space-y-4">
             <div className="flex items-center gap-4 text-slate-400">
               <div className="w-2 h-2 bg-slate-500 rounded-full"></div>
-              <span>3+ Years Experience</span>
+              <span>2+ Years Experience</span>
             </div>
             <div className="flex items-center gap-4 text-slate-400">
               <div className="w-2 h-2 bg-slate-500 rounded-full"></div>
-              <span>50+ Projects Completed</span>
+              <span>10+ Projects Completed</span>
             </div>
             <div className="flex items-center gap-4 text-slate-400">
               <div className="w-2 h-2 bg-slate-500 rounded-full"></div>

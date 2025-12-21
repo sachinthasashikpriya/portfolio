@@ -1,5 +1,5 @@
 // components/ProjectsSection.tsx
-import { ExternalLink, Github } from "lucide-react";
+import { Github, LinkedinIcon } from "lucide-react";
 import React from "react";
 
 interface Project {
@@ -8,7 +8,7 @@ interface Project {
   description: string;
   tech: string[];
   github: string;
-  demo: string;
+  linkedin: string;
   image: string;
 }
 
@@ -19,16 +19,16 @@ const ProjectsSection: React.FC = () => {
       title: "Wayfinde",
       description:
         "A web application built for the travelers including the features user authentication, trip planning, blog posting, accommodation and vehicle reservations, payment integration and admin dashboard.",
-      tech: ["React", ".NET", "MsSQL", "Stripe API", "JWT", "cloudinary"],
-      github: "#",
-      demo: "#",
+      tech: ["React", ".NET", "MSSQL", "Stripe API", "JWT", "cloudinary"],
+      github: "https://github.com/Navoda-Rajapakshe01/project_WayFinde.git",
+      linkedin: "#",
       image: "👣",
     },
     {
       id: 2,
-      title: "Task Management App",
+      title: "Track Me",
       description:
-        "A collaborative task management application with real-time updates, drag-and-drop functionality, team collaboration features, time tracking, and project analytics dashboard.",
+        "A web application designed to help users manage their personal finances efficiently. It allows users to record and monitor their daily income and expenses, analyze them through statistical summaries, and create budgets for special occasions. Additionally, the system provides reminder features for important financial activities such as bill payments, helping users stay organized and in control of their spending.",
       tech: [
         "React",
         "TypeScript",
@@ -37,26 +37,22 @@ const ProjectsSection: React.FC = () => {
         "PostgreSQL",
         "Redux",
       ],
-      github: "#",
-      demo: "#",
+      github:
+        "https://github.com/sachinthasashikpriya/PersonalExpenseTracker.git",
+      linkedin:
+        "https://www.linkedin.com/posts/sachintha-sashikpriya-8827a6267_react-express-mongodb-ugcPost-7389882125686173696-paSb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEFvW2IBZm0Da_bb505CXoh2hd_IZMl0UhQ",
       image: "📋",
     },
     {
       id: 3,
-      title: "Weather Dashboard",
+      title: "School Management System",
       description:
         "A responsive weather application that provides detailed forecasts, interactive weather maps, location-based alerts, and historical weather data visualization using multiple APIs.",
-      tech: [
-        "React",
-        "Tailwind CSS",
-        "OpenWeather API",
-        "Chart.js",
-        "Mapbox",
-        "PWA",
-      ],
-      github: "#",
-      demo: "#",
-      image: "🌤️",
+      tech: ["React", "Tailwind CSS", "Spring Boot", "PostgreSQL"],
+      github:
+        "https://github.com/sachinthasashikpriya/SchoolManagementSystem.git",
+      linkedin: "#",
+      image: "🎓",
     },
     {
       id: 4,
@@ -65,7 +61,7 @@ const ProjectsSection: React.FC = () => {
         "A comprehensive social media analytics platform with data visualization, sentiment analysis, engagement tracking, and automated reporting for multiple social platforms.",
       tech: ["React", "Python", "Flask", "PostgreSQL", "D3.js", "TensorFlow"],
       github: "#",
-      demo: "#",
+      linkedin: "#",
       image: "📊",
     },
     {
@@ -75,8 +71,8 @@ const ProjectsSection: React.FC = () => {
         "An educational platform with course creation tools, student progress tracking, interactive quizzes, video streaming, and certificate generation system.",
       tech: ["React", "Node.js", "MongoDB", "AWS S3", "WebRTC", "Cloudinary"],
       github: "#",
-      demo: "#",
-      image: "🎓",
+      linkedin: "#",
+      image: "",
     },
     {
       id: 6,
@@ -92,7 +88,7 @@ const ProjectsSection: React.FC = () => {
         "Stripe",
       ],
       github: "#",
-      demo: "#",
+      linkedin: "#",
       image: "🏠",
     },
   ];
@@ -140,11 +136,11 @@ const ProjectsSection: React.FC = () => {
                   <span className="text-sm">Code</span>
                 </a>
                 <a
-                  href={project.demo}
+                  href={project.linkedin}
                   className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors bg-gray-800/40 px-3 py-2 rounded-lg hover:bg-gray-700/60 border border-gray-700"
                 >
-                  <ExternalLink className="w-4 h-4" />
-                  <span className="text-sm">Demo</span>
+                  <LinkedinIcon className="w-4 h-4" />
+                  <span className="text-sm">Linkedin</span>
                 </a>
               </div>
             </div>
