@@ -6,7 +6,7 @@ interface Education {
   institution: string;
   year: string;
   description: string;
-  gpa?: string;
+  cgpa?: string;
   certificate?: string;
   logo?: string; // New field for institute logo
 }
@@ -17,8 +17,8 @@ const EducationSection: React.FC = () => {
       degree: "Bachelor of Information Technology and Management",
       institution: "University of Moratuwa",
       year: "2023 - current",
-      description: "",
-      gpa: "3.8/4.0",
+      description: "CGPA: 3.38",
+      cgpa: "3.38",
       logo: "/University_of_Moratuwa_logo.png",
     },
     {

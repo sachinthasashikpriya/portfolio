@@ -7,12 +7,21 @@ const Hero: React.FC = () => {
   const titleRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
+    // Also clear any hash from the URL
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, []);
+
+  useEffect(() => {
     let nameTyped: Typed | null = null;
     let titleTyped: Typed | null = null;
 
     if (nameRef.current) {
       nameTyped = new Typed(nameRef.current, {
-        strings: ["Sachintha"],
+        strings: ["Sachintha Sashikpriya"],
         typeSpeed: 80,
         backSpeed: 50,
         loop: false,
@@ -49,7 +58,7 @@ const Hero: React.FC = () => {
         <div className="text-center md:text-left">
           <h1 className="text-5xl md:text-7xl font-bold text-white">Hi, I'm</h1>
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-slate-400 to-slate-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-slate-400 to-slate-200 bg-clip-text text-transparent whitespace-nowrap">
               <span ref={nameRef}></span>
             </span>
           </h1>

@@ -7,7 +7,7 @@ interface Project {
   title: string;
   description: string;
   tech: string[];
-  github: string;
+  github: string | { label: string; url: string }[];
   linkedin: string;
   image: string;
 }
@@ -19,7 +19,15 @@ const ProjectsSection: React.FC = () => {
       title: "Wayfinde",
       description:
         "A web application built for the travelers including the features user authentication, trip planning, blog posting, accommodation and vehicle reservations, payment integration and admin dashboard.",
-      tech: ["React", ".NET", "MSSQL", "Stripe API", "JWT", "cloudinary"],
+      tech: [
+        "React",
+        ".NET",
+        "MSSQL",
+        "Stripe API",
+        "Google Map API",
+        "JWT",
+        "cloudinary",
+      ],
       github: "https://github.com/Navoda-Rajapakshe01/project_WayFinde.git",
       linkedin: "#",
       image: "👣",
@@ -56,23 +64,46 @@ const ProjectsSection: React.FC = () => {
     },
     {
       id: 4,
-      title: "Social Media Analytics",
+      title: "Bagify – Multi-Vendor E-Commerce Platform",
       description:
-        "A comprehensive social media analytics platform with data visualization, sentiment analysis, engagement tracking, and automated reporting for multiple social platforms.",
-      tech: ["React", "Python", "Flask", "PostgreSQL", "D3.js", "TensorFlow"],
-      github: "#",
+        "A full-stack multi-vendor e-commerce web application designed for buying and selling bags online. The platform supports buyer, seller, and admin roles with features like product management, shopping cart, order processing, authentication, and an admin dashboard for system control and analytics.",
+      tech: [
+        "React",
+        "Spring Boot",
+        "PostgreSQL",
+        "REST APIs",
+        "JWT",
+        "Tailwind CSS",
+      ],
+      github: [
+        {
+          label: "Frontend",
+          url: "https://github.com/sachinthasashikpriya/bagify-project",
+        },
+        {
+          label: "Backend",
+          url: "https://github.com/sachinthasashikpriya/bagify-backend",
+        },
+      ],
       linkedin: "#",
-      image: "📊",
+      image: "🛍️",
     },
     {
       id: 5,
-      title: "Learning Management System",
+      title: "FlexFit – Smart Fitness Monitoring System",
       description:
-        "An educational platform with course creation tools, student progress tracking, interactive quizzes, video streaming, and certificate generation system.",
-      tech: ["React", "Node.js", "MongoDB", "AWS S3", "WebRTC", "Cloudinary"],
-      github: "#",
+        "An IoT-based fitness monitoring system built using the Arduino Nano 33 BLE Sense Rev 2 to track body movements and physical activity. The system utilizes onboard sensors to capture motion data, analyze exercise patterns, and provide real-time feedback, enabling smarter workout tracking and performance monitoring.",
+      tech: [
+        "Arduino",
+        "Firebase",
+        "Arduino nano 33 BLE sense",
+        "GPS module",
+        "Heart rate sensor",
+      ],
+      github:
+        "https://github.com/sachinthasashikpriya/Arduino-hardware-project",
       linkedin: "#",
-      image: "",
+      image: "🤖",
     },
     {
       id: 6,
@@ -93,6 +124,44 @@ const ProjectsSection: React.FC = () => {
     },
   ];
 
+  const renderGithubLinks = (
+    github: string | { label: string; url: string }[]
+  ) => {
+    if (typeof github === "string") {
+      // Single repository
+      return (
+        <a
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors bg-gray-800/40 px-3 py-2 rounded-lg hover:bg-gray-700/60 border border-gray-700"
+        >
+          <Github className="w-4 h-4" />
+          <span className="text-sm">Code</span>
+        </a>
+      );
+    } else {
+      // Multiple repositories
+      return (
+        <div className="flex gap-2">
+          {github.map((repo, index) => (
+            <a
+              key={index}
+              href={repo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-slate-300 hover:text-white transition-colors bg-gray-800/40 px-2 py-2 rounded-lg hover:bg-gray-700/60 border border-gray-700"
+              title={repo.label}
+            >
+              <Github className="w-4 h-4" />
+              <span className="text-xs">{repo.label}</span>
+            </a>
+          ))}
+        </div>
+      );
+    }
+  };
+
   return (
     <section
       id="projects"
@@ -106,7 +175,7 @@ const ProjectsSection: React.FC = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="backdrop-blur-md bg-black/30 rounded-2xl p-6 border border-gray-800/50 shadow-2xl hover:bg-black/40 transition-all duration-500 hover:scale-105 group"
+              className="backdrop-blur-md bg-black/30 rounded-2xl p-6 border border-gray-800/50 shadow-2xl hover:bg-black/40 transition-all duration-500 hover:scale-105 group flex flex-col h-full"
             >
               <div className="text-center mb-4">
                 <div className="text-4xl mb-3">{project.image}</div>
@@ -114,7 +183,7 @@ const ProjectsSection: React.FC = () => {
                   {project.title}
                 </h3>
               </div>
-              <p className="text-slate-300 mb-6 text-sm leading-relaxed line-clamp-4">
+              <p className="text-slate-300 mb-6 text-sm leading-relaxed line-clamp-4 text-justify">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
@@ -127,20 +196,16 @@ const ProjectsSection: React.FC = () => {
                   </span>
                 ))}
               </div>
-              <div className="flex gap-4 justify-center">
-                <a
-                  href={project.github}
-                  className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors bg-gray-800/40 px-3 py-2 rounded-lg hover:bg-gray-700/60 border border-gray-700"
-                >
-                  <Github className="w-4 h-4" />
-                  <span className="text-sm">Code</span>
-                </a>
+              <div className="flex gap-4 justify-center mt-auto pt-4">
+                {renderGithubLinks(project.github)}
                 <a
                   href={project.linkedin}
-                  className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors bg-gray-800/40 px-3 py-2 rounded-lg hover:bg-gray-700/60 border border-gray-700"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors bg-blue-600/40 px-3 py-2 rounded-lg hover:bg-blue-700/60 border border-blue-600"
                 >
                   <LinkedinIcon className="w-4 h-4" />
-                  <span className="text-sm">Linkedin</span>
+                  <span className="text-sm">LinkedIn</span>
                 </a>
               </div>
             </div>
